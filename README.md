@@ -1,51 +1,44 @@
-# 🐾 Entre-Patas
+# Entre-Patas — rede social para pets e tutores
 
-Rede social acadêmica para pets e seus tutores. Primeira versão construída com HTML5, CSS3 e JavaScript puro (ES6+), sem etapa de build.
+Projeto acadêmico de Desenvolvimento de Interfaces, desenvolvido com HTML5, CSS3 e JavaScript puro (ES6+), sem frameworks ou etapa de build.
 
-## Status
+## Como executar
+1. Baixe ou clone este repositório.
+2. Mantenha `index.html`, `styles.css` e `script.js` na mesma pasta.
+3. Abra `index.html` no navegador.
 
-**Versão:** 1.0.0 (protótipo inicial)  
-**Situação:** interface inicial recebida; funcionalidades de conta e comunicação ainda são demonstrativas.
+É necessária conexão com a internet para carregar fontes do Google Fonts e imagens do Unsplash.
 
-## Executar localmente
-
-1. Clone este repositório.
-2. Abra `index.html` no navegador.
-
-Não há dependências de instalação. Fontes e imagens externas exigem conexão com a internet.
-
-## Tecnologias
-
-- HTML5 semântico
-- CSS3 (Grid, Flexbox e variáveis)
-- JavaScript ES6+
-- `localStorage` para preferências e dados demonstrativos
+## Estrutura
+| Arquivo | Responsabilidade |
+|---|---|
+| `index.html` | Estrutura semântica, acessibilidade, carrossel, feed, contato e modal |
+| `styles.css` | Temas, layout responsivo, foco visível e redução de movimento |
+| `script.js` | Preferências, validação, autenticação demonstrativa, carrossel e feed |
+| `docs/ROADMAP.md` | Etapas planejadas para evolução |
 
 ## Funcionalidades do protótipo
+- Feed demonstrativo com filtros e busca.
+- Publicação local de postagens e comentários.
+- Preferências de tema, tamanho de fonte e alto contraste.
+- Carrossel de destaques.
+- Formulários com validação no navegador.
+- Interface de login/cadastro demonstrativa.
 
-- Feed de pets e filtros por categoria
-- Formulário de publicação
-- Carrossel de destaques
-- Preferências de tema, tamanho de fonte e alto contraste
-- Formulários com validação no navegador
-- Modal de acesso/cadastro demonstrativo
+## Acessibilidade
+O protótipo inclui HTML semântico, link para pular ao conteúdo, foco visível, atributos ARIA, mensagens de validação associadas aos campos e suporte a `prefers-reduced-motion`. A conformidade WCAG deve ser confirmada com testes automatizados e manuais antes de qualquer declaração formal de conformidade.
 
 ## Limitações conhecidas
+- Não há backend nem banco de dados.
+- Login e cadastro são simulados; não existe autenticação real.
+- Feed, comentários e preferências são armazenados apenas no navegador via `localStorage`.
+- O formulário de contato apenas simula o envio; não transmite mensagens.
+- Links institucionais e redes sociais são placeholders.
+- As imagens e fontes externas dependem de conexão com a internet.
+- Não use dados pessoais reais nesta versão demonstrativa.
 
-- Não existe backend nem banco de dados.
-- Login/cadastro não são autenticação real.
-- Dados locais não são sincronizados entre dispositivos.
-- O formulário de contato não possui serviço de envio conectado.
-- Links institucionais e redes sociais ainda são placeholders.
-- Não publicar dados pessoais reais nesta versão.
+## Contribuição
+Crie uma branch para cada melhoria (`feature/nome` ou `fix/nome`), teste a alteração no navegador e abra um Pull Request descrevendo o que mudou e como foi testado.
 
-## Fluxo de contribuição
-
-1. Crie uma branch a partir de `main` (`feature/nome-da-funcionalidade` ou `fix/nome-do-ajuste`).
-2. Faça alterações pequenas e objetivas.
-3. Teste no navegador em desktop e mobile.
-4. Abra um Pull Request descrevendo mudanças e testes realizados.
-
-## Projeto acadêmico
-
-Desenvolvimento de Interfaces — Entre-Patas, 2026.
+---
+Projeto acadêmico — Entre-Patas, 2026.
