@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Entre-Patas – a rede social dos pets e seus tutores</title>
+<meta name="description" content="Entre-Patas: perfis de pets, feed, adoção responsável e dicas de bem-estar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body id="top">
+<a class="skip" href="#feed">Pular para o feed</a>
+
+<div class="a11y" role="toolbar" aria-label="Ferramentas de acessibilidade">
+  <button id="theme" type="button" aria-pressed="false">🌙 Modo escuro</button>
+  <span role="group" aria-label="Tamanho da fonte">
+    <button type="button" data-fs="-1" aria-label="Diminuir fonte">A-</button>
+    <button type="button" data-fs="0" aria-label="Restaurar tamanho da fonte">A</button>
+    <button type="button" data-fs="1" aria-label="Aumentar fonte">A+</button>
+  </span>
+  <button id="hc" type="button" aria-pressed="false">◐ Alto contraste</button>
+</div>
+
+<header class="top">
+  <a class="logo" href="#top" aria-label="Entre-Patas, início">🐾 Entre-Patas</a>
+  <nav aria-label="Principal">
+    <a href="#destaques">Destaques</a><a href="#feed">Feed</a><a href="#como">Como funciona</a><a href="#contato">Contato</a>
+  </nav>
+  <div id="user"></div>
+</header>
+
+<main>
+  <section id="destaques" class="hero" aria-roledescription="carrossel" aria-label="Destaques da comunidade">
+    <h1 class="sr">Entre-Patas, a rede social dos pets e seus tutores</h1>
+    <div class="slides" id="slides">
+      <article class="slide on" role="group" aria-roledescription="slide" aria-label="1 de 3" style="--img:url('https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&amp;fit=crop&amp;w=1400&amp;q=70')">
+        <div class="cap"><h2>Pets da Semana</h2><p>Conheça os bichinhos mais queridos da vizinhança e vote com um petisco.</p><a class="btn" href="#feed">Ver o feed</a></div>
+      </article>
+      <article class="slide" role="group" aria-roledescription="slide" aria-label="2 de 3" style="--img:url('https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&amp;fit=crop&amp;w=1400&amp;q=70')">
+        <div class="cap"><h2>Feira de Adoção Responsável</h2><p>Cães e gatos vacinados, castrados e prontos para um lar. Veja quem espera por você.</p><a class="btn" href="#feed" data-filter="adopt">Ver pets para adoção</a></div>
+      </article>
+      <article class="slide" role="group" aria-roledescription="slide" aria-label="3 de 3" style="--img:url('https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&amp;fit=crop&amp;w=1400&amp;q=70')">
+        <div class="cap"><h2>Encontros no Parque</h2><p>Passeios coletivos aos domingos. Crie o perfil do seu pet e conheça os tutores do bairro.</p><a class="btn" href="#" data-auth="signup">Criar perfil do pet</a></div>
+      </article>
+    </div>
+    <div class="ctl">
+      <button type="button" id="prev" aria-label="Slide anterior">‹</button>
+      <button type="button" id="play" aria-label="Pausar rotação automática">❚❚</button>
+      <button type="button" id="next" aria-label="Próximo slide">›</button>
+      <div class="dots" id="dots"></div>
+    </div>
+  </section>
+
+  <section id="feed" class="wrap" aria-labelledby="feed-t">
+    <h2 id="feed-t">O que a matilha está postando</h2>
+    <form id="new" class="panel" novalidate aria-labelledby="new-t">
+      <h3 id="new-t">Nova postagem</h3>
+      <div class="grid2">
+        <div class="f"><label for="n-name">Nome do pet</label><input id="n-name" data-v="req" aria-describedby="n-name-e" maxlength="30" autocomplete="off"><p class="err" id="n-name-e" aria-live="polite"></p></div>
+        <div class="f"><label for="n-cat">Categoria</label>
+          <select id="n-cat" data-v="req" aria-describedby="n-cat-e"><option value="">Selecione</option><option value="dog">Cachorro</option><option value="cat">Gato</option><option value="exotic">Exótico ou ave</option></select>
+          <p class="err" id="n-cat-e" aria-live="polite"></p></div>
+        <div class="f"><label for="n-breed">Raça (opcional)</label><input id="n-breed" maxlength="30" autocomplete="off"></div>
+        <div class="f"><label for="n-img">Link da foto (opcional)</label><input id="n-img" type="url" data-v="url" aria-describedby="n-img-e" placeholder="https://"><p class="err" id="n-img-e" aria-live="polite"></p></div>
+      </div>
+      <div class="f"><label for="n-cap">Legenda</label><textarea id="n-cap" rows="2" maxlength="200" data-v="req" aria-describedby="n-cap-e"></textarea><p class="err" id="n-cap-e" aria-live="polite"></p></div>
+      <div class="row">
+        <label class="ck"><input type="checkbox" id="n-vac">Vacinado</label>
+        <label class="ck"><input type="checkbox" id="n-adopt">Disponível para adoção</label>
+        <button class="btn" type="submit">Publicar</button>
+      </div>
+    </form>
+
+    <div class="bar">
+      <div class="f"><label class="sr" for="q">Buscar por pet, raça ou tutor</label><input id="q" type="search" placeholder="Buscar por pet, raça ou tutor…" autocomplete="off"></div>
+      <div class="tabs" role="group" aria-label="Filtrar por categoria">
+        <button type="button" class="tab" data-cat="all" aria-pressed="true">Todos</button>
+        <button type="button" class="tab" data-cat="dog" aria-pressed="false">Cachorros</button>
+        <button type="button" class="tab" data-cat="cat" aria-pressed="false">Gatos</button>
+        <button type="button" class="tab" data-cat="exotic" aria-pressed="false">Exóticos &amp; Aves</button>
+        <button type="button" class="tab" data-cat="adopt" aria-pressed="false">Adoção</button>
+      </div>
+    </div>
+    <p id="count" class="mu" role="status"></p>
+    <div id="grid" class="grid"></div>
+    <p id="empty" class="panel" hidden>Nenhum pet encontrado. Tente outro nome ou publique o seu!</p>
+  </section>
+
+  <section id="como" class="band" aria-labelledby="como-t">
+    <div class="wrap">
+      <h2 id="como-t">Como funciona</h2>
+      <ol class="steps">
+        <li><span aria-hidden="true">📸</span><h3>1. Crie o perfil do seu pet</h3><p>Foto, raça, vacinas e manias: o cartão do seu pet em poucos minutos.</p></li>
+        <li><span aria-hidden="true">🌳</span><h3>2. Conecte-se com vizinhos e parques</h3><p>Encontre tutores por perto e combine passeios e encontros.</p></li>
+        <li><span aria-hidden="true">🏠</span><h3>3. Rede de apoio e adoção</h3><p>Divulgue pets que procuram um lar e acompanhe adoções responsáveis.</p></li>
+        <li><span aria-hidden="true">🩺</span><h3>4. Dicas de saúde e bem-estar</h3><p>Lembretes de vacina e conteúdo de veterinários parceiros.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="contato" class="wrap" aria-labelledby="ct-t">
+    <h2 id="ct-t">Fale com a Entre-Patas</h2>
+    <form id="contact" class="panel" novalidate>
+      <div class="grid2">
+        <div class="f"><label for="c-name">Nome do tutor</label><input id="c-name" data-v="req" aria-describedby="c-name-e" autocomplete="name"><p class="err" id="c-name-e" aria-live="polite"></p></div>
+        <div class="f"><label for="c-pet">Nome do pet</label><input id="c-pet" data-v="req" aria-describedby="c-pet-e"><p class="err" id="c-pet-e" aria-live="polite"></p></div>
+        <div class="f"><label for="c-email">E-mail</label><input id="c-email" type="email" data-v="req email" aria-describedby="c-email-e" autocomplete="email"><p class="err" id="c-email-e" aria-live="polite"></p></div>
+        <div class="f"><label for="c-sub">Assunto</label>
+          <select id="c-sub" data-v="req" aria-describedby="c-sub-e"><option value="">Selecione</option><option>Dúvida</option><option>Sugestão</option><option>Denúncia de Maus-Tratos</option><option>Parceria PetShop/Vet</option></select>
+          <p class="err" id="c-sub-e" aria-live="polite"></p></div>
+      </div>
+      <div class="f"><label for="c-msg">Mensagem</label><textarea id="c-msg" rows="4" data-v="req min10" aria-describedby="c-msg-e"></textarea><p class="err" id="c-msg-e" aria-live="polite"></p></div>
+      <div class="f"><label class="ck"><input type="checkbox" id="c-lgpd" data-v="req" aria-describedby="c-lgpd-e">Concordo com o tratamento dos meus dados pessoais conforme a LGPD.</label><p class="err" id="c-lgpd-e" aria-live="polite"></p></div>
+      <button class="btn" type="submit">Enviar mensagem</button>
+    </form>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap cols">
+    <div><p class="logo">🐾 Entre-Patas</p><p>Nossa missão: aproximar tutores, valorizar a adoção responsável e cuidar do bem-estar de todos os pets.</p></div>
+    <nav aria-label="Links rápidos"><h2>Links rápidos</h2><a href="#destaques">Destaques</a><a href="#feed">Feed</a><a href="#como">Como funciona</a><a href="#contato">Contato</a></nav>
+    <nav aria-label="Políticas"><h2>Comunidade</h2><a href="#" data-soon>Política de privacidade</a><a href="#" data-soon>Diretrizes da comunidade pet</a><a href="#" data-soon>Termos de uso</a></nav>
+    <div><h2>Redes sociais</h2><a href="#" data-soon>Instagram</a><a href="#" data-soon>TikTok</a><a href="#" data-soon>YouTube</a><p class="seal">♿ Conforme WCAG 2.1 AA</p></div>
+  </div>
+  <p class="credit">Projeto acadêmico de Desenvolvimento de Interfaces · Entre-Patas 2026</p>
+</footer>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<dialog id="auth" aria-labelledby="auth-t">
+  <button class="x" id="auth-x" type="button" aria-label="Fechar">✕</button>
+  <h2 id="auth-t">Entrar na Matilha</h2>
+  <form id="auth-form" novalidate>
+    <div class="su f" hidden><label for="a-pet">Nome do pet</label><input id="a-pet" data-v="req" aria-describedby="a-pet-e"><p class="err" id="a-pet-e" aria-live="polite"></p></div>
+    <div class="su f" hidden><label for="a-breed">Raça ou espécie</label><input id="a-breed"></div>
+    <div class="f"><label for="a-email">E-mail</label><input id="a-email" type="email" data-v="req email" aria-describedby="a-email-e" autocomplete="email"><p class="err" id="a-email-e" aria-live="polite"></p></div>
+    <div class="f"><label for="a-pw">Senha</label>
+      <div class="pw"><input id="a-pw" type="password" data-v="req pass" aria-describedby="a-pw-e" autocomplete="current-password"><button id="pw-t" type="button" class="btn ghost" aria-pressed="false" aria-controls="a-pw">Mostrar</button></div>
+      <p class="err" id="a-pw-e" aria-live="polite"></p></div>
+    <button class="btn" id="auth-go" type="submit">Entrar</button>
+    <button class="link" id="auth-sw" type="button">Ainda não tem perfil? Crie o do seu pet</button>
+  </form>
+</dialog>
+
+<script src="script.js"></script>
+</body>
+</html>
