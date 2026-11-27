@@ -68,3 +68,15 @@ git push -u origin main
 - **Aparece "Falta configurar o config.js".** Cole a URL e a chave pública do projeto no `config.js`.
 - **O feed fica vazio.** O feed só mostra publicações de quem já criou conta e publicou. Crie uma conta e publique a primeira foto.
 - **Erro ao enviar foto.** Confirme que rodou o `supabase.sql` completo, que cria o bucket `photos`.
+
+## Administrador
+
+O cadastro de qualquer pessoa começa como usuário comum. Depois de criar sua conta, o proprietário deve promovê-la manualmente no Supabase SQL Editor, substituindo o e-mail abaixo pelo e-mail usado no cadastro:
+
+```sql
+update public.profiles
+set role = 'admin'
+where id = (select id from auth.users where email = 'SEU_EMAIL');
+```
+
+Não coloque a chave `service_role` ou qualquer chave secreta no frontend. O arquivo `config.js` usa somente a chave pública publishable/anon.
