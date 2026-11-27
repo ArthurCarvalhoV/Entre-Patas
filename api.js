@@ -7,7 +7,7 @@ const MSG = {
   'Email not confirmed': 'Confirme seu e-mail pelo link que enviamos e tente de novo.',
   'User already registered': 'Este e-mail já está cadastrado.'
 };
-const D = async r => { r = await r; if (r.error) throw Error(MSG[r.error.message] || r.error.message); return r.data; };
+const D = async r => { r = await r; if (r.error) throw Error(MSG[r.error.message] || (/rate limit|only request this after/i.test(r.error.message) ? 'Muitos cadastros em pouco tempo. Aguarde alguns minutos e tente de novo.' : r.error.message)); return r.data; };
 const uid = async () => (await sb.auth.getSession()).data.session?.user.id;
 
 async function rel() { // amizades do usuário logado (a política RLS só devolve as dele)
@@ -36,6 +36,7 @@ async function api(p, o = {}) {
       const r = await D(sb.auth.signUp({ email: b.email, password: b.password, options: { data: { username: b.username } } }));
       return { session: !!r.session };
     }
+    case 'contact': return D(sb.from('contacts').insert({ name: b.name, pet: b.pet, email: b.email, subject: b.subject, message: b.message }));
     case 'logout': return D(sb.auth.signOut());
     case 'upload': {
       const n = `${await uid()}/${crypto.randomUUID()}.jpg`;
@@ -44,7 +45,7 @@ async function api(p, o = {}) {
     }
     case 'feed': {
       const t = q.get('tab');
-      let s = sb.from('posts_v').select('*').order('id', { ascending: false }).limit(30);
+      let s = sb.from('posts_v').select('*').order('id', { ascending: false }).limit(60);
       if (t == 'adoption') s = s.eq('adoption', true);
       if (t == 'friends') s = s.in('uid', [await uid(), ...(await rel()).friends]);
       return { posts: await D(s) };
@@ -52,7 +53,7 @@ async function api(p, o = {}) {
     case 'posts':
       if (!a) {
         if (b.adoption && !(b.species && b.city)) throw Error('Para adoção, informe espécie/raça e cidade');
-        return D(sb.from('posts').insert({ image: b.image, caption: b.caption || '', adoption: !!b.adoption, species: b.species || '', age: b.age || '', city: b.city || '' }));
+        return D(sb.from('posts').insert({ image: b.image, caption: b.caption || '', adoption: !!b.adoption, species: b.species || '', age: b.age || '', city: b.city || '', category: b.category || 'other' }));
       }
       if (c == 'like') return D(sb.rpc('toggle_like', { p: +a }));
       if (c == 'comments') {
@@ -78,7 +79,7 @@ async function api(p, o = {}) {
     case 'messages': return m == 'POST' ? D(sb.rpc('send_msg', { un: a, m: b.body })) : { items: await D(sb.rpc('thread', { un: a })) };
     case 'adopt': return D(sb.rpc('apply_adoption', { p: +a, d: b }));
     case 'adoptions': return m == 'POST' ? D(sb.rpc('decide_adoption', { aid: +a, act: c })) : D(sb.rpc('adoptions'));
-    case 'admin': return a == 'users' ? D(sb.rpc('admin_user', { u: c, act: e })) : D(sb.rpc('admin_data'));
+    case 'admin': return a == 'users' ? D(sb.rpc('admin_user', { u: c, act: e })) : a == 'contacts' ? { items: await D(sb.rpc('admin_contacts')) } : D(sb.rpc('admin_data'));
   }
   throw Error('Ação desconhecida: ' + p);
 }
