@@ -3,221 +3,37 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Entre Patas</title>
-<style>
-:root{--bg:#FFF8F0;--sf:#FFFFFF;--tx:#2A2220;--mu:#5E534D;--pr:#B93E15;--on-pr:#FFFFFF;--se:#0D5560;--on-se:#FFFFFF;--bd:#E6D8CB;--ib:#8A7B70;--ring:#0D5560}
-[data-t=d]{--bg:#1F272E;--sf:#2A343D;--tx:#F3EEE9;--mu:#BCC5CC;--pr:#FF8A65;--on-pr:#1F272E;--se:#6FD3D6;--on-se:#1F272E;--bd:#3C4853;--ib:#8794A0;--ring:#6FD3D6}
-*{box-sizing:border-box}[hidden]{display:none!important}
-body{margin:0;background:var(--bg);color:var(--tx);font:1rem/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding-bottom:4.5rem}
-a{color:var(--se)}:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
-.sr,.skip:not(:focus){position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
-button,input,textarea{font:inherit;color:inherit}button{cursor:pointer}
-h1{font-size:1.3rem;margin:0 0 .5rem}h2{font-size:1.05rem;margin:.5rem 0}.mu{color:var(--mu)}.pad{padding:1rem}
-#top{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:.5rem;padding:.4rem 1rem;background:var(--sf);border-bottom:1px solid var(--bd)}
-.logo{font-weight:800;font-size:1.4rem;color:var(--pr);text-decoration:none;margin:0}
-nav{display:flex;gap:.1rem;margin:0 auto}
-nav a{position:relative;display:grid;place-items:center;min-width:2.75rem;min-height:2.75rem;font-size:1.35rem;text-decoration:none}
-i{font:700 .7rem/1 system-ui;font-style:normal;background:var(--pr);color:var(--on-pr);border-radius:999px;padding:.2rem .4rem}
-nav i{position:absolute;top:.1rem;right:0}
-.tools{display:flex;gap:.1rem;margin-left:auto}.tools button{min-height:2.75rem;min-width:2.75rem;background:none;border:0}
-main{max-width:34rem;margin:1rem auto;padding:0 .5rem}
-.card{background:var(--sf);border:1px solid var(--bd);border-radius:.8rem;margin-bottom:1rem;overflow:hidden}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:2.75rem;padding:.4rem 1.1rem;border:1px solid transparent;border-radius:.6rem;background:var(--se);color:var(--on-se);font-weight:600;text-decoration:none}
-.btn.ghost{background:transparent;color:var(--tx);border-color:var(--ib)}.btn.sm{min-height:2.25rem;padding:.2rem .8rem}.btn[disabled]{opacity:.6}
-label{display:block;font-weight:600;margin:.6rem 0}
-input:not([type=checkbox]):not([type=file]),textarea{display:block;width:100%;min-height:2.75rem;margin-top:.25rem;padding:.5rem .7rem;border:1px solid var(--ib);border-radius:.6rem;background:var(--sf)}
-.ck{display:flex;gap:.5rem;font-weight:400}.ck input{width:1.25rem;height:1.25rem;flex:none;accent-color:var(--se)}
-.err{color:var(--pr);font-weight:600;min-height:1.2em;margin:.3rem 0}.row{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem}
-.auth{max-width:22rem;margin:2rem auto;padding:1.5rem;text-align:center}.auth label{text-align:left}
-.av{width:2.25rem;height:2.25rem;border-radius:50%;object-fit:cover;background:var(--se);color:var(--on-se);display:inline-grid;place-items:center;font-weight:800;flex:none}
-.av.big{width:5rem;height:5rem;font-size:2rem}
-.stories{display:flex;gap:.8rem;overflow-x:auto;padding:.5rem .3rem}.stories a{text-align:center;text-decoration:none;color:var(--tx);font-size:.75rem}
-.ring{display:block;padding:3px;border-radius:50%;background:linear-gradient(45deg,#FFB020,#E8542A,#B93E15)}.ring .av{width:3.5rem;height:3.5rem;border:3px solid var(--sf)}
-.tabs{display:flex;gap:.5rem;margin:.5rem 0 1rem}.tabs a{flex:1;text-align:center;padding:.6rem;border-radius:.6rem;border:1px solid var(--ib);color:var(--tx);text-decoration:none;font-weight:600}
-.tabs a[aria-current=page]{background:var(--se);color:var(--on-se);border-color:var(--se)}
-.ph{display:flex;align-items:center;gap:.5rem;padding:.6rem .8rem}.who{display:flex;align-items:center;gap:.5rem;color:var(--tx);text-decoration:none}
-.badge{background:var(--pr);color:var(--on-pr);border-radius:999px;padding:.1rem .6rem;font-size:.75rem;font-weight:700}.ph .badge{margin-left:auto}
-.x{background:none;border:0;min-width:2.75rem;min-height:2.75rem;margin-left:auto}
-.pic{display:block;width:100%;aspect-ratio:1;object-fit:cover;background:var(--bd)}
-.pb{padding:0 .8rem .8rem}.pb p{margin:.2rem 0}
-.acts{display:flex;align-items:center;gap:.1rem}.acts button:not(.btn){background:none;border:0;font-size:1.5rem;min-width:2.75rem;min-height:2.75rem}
-.acts [aria-pressed=true]{color:var(--pr)}.acts .btn{margin-left:auto}
-.cm p{margin:.3rem 0}.cm form{display:flex;gap:.4rem;align-items:flex-end}
-.prof{display:flex;gap:1rem;align-items:center}.prof p{margin:.2rem 0}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}.grid button{padding:0;border:0;background:none}.grid img{width:100%;aspect-ratio:1;object-fit:cover;display:block}
-.list{list-style:none;margin:0 0 1rem;padding:0}.list li{border-bottom:1px solid var(--bd);padding:.6rem 1rem}.list li.new{border-left:4px solid var(--pr)}
-.list a.row{color:var(--tx);text-decoration:none}.th{width:3rem;height:3rem;border-radius:.5rem;object-fit:cover}
-dl{margin:.5rem 0}dt{font-weight:600}dd{margin:0 0 .4rem}
-.msgs{height:min(55vh,28rem);overflow:auto;padding:1rem;display:flex;flex-direction:column;gap:.4rem}
-.m{max-width:75%;margin:0;padding:.5rem .8rem;border-radius:1rem;background:var(--bd);align-self:flex-start;overflow-wrap:anywhere}.m.me{align-self:flex-end;background:var(--se);color:var(--on-se)}
-.chat form{padding:.8rem}.chat form input{flex:1}
-.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem}.stats .card{text-align:center;margin:0}.stats b{font-size:1.6rem}
-.scroll{overflow-x:auto}table{width:100%;border-collapse:collapse}td,th{padding:.5rem;text-align:left;border-bottom:1px solid var(--bd)}
-dialog{border:1px solid var(--bd);border-radius:.8rem;padding:0;background:var(--sf);color:var(--tx);width:min(32rem,calc(100% - 1rem));max-height:90vh}dialog::backdrop{background:rgba(0,0,0,.6)}
-dialog .card{border:0;margin:0}
-#toast{position:fixed;left:50%;bottom:5rem;transform:translate(-50%,300%);background:var(--se);color:var(--on-se);padding:.7rem 1.2rem;border-radius:.8rem;font-weight:600;transition:transform .3s;z-index:9;max-width:90%}#toast.show{transform:translate(-50%,0)}
-@media(max-width:700px){nav{position:fixed;bottom:0;left:0;right:0;z-index:5;justify-content:space-around;background:var(--sf);border-top:1px solid var(--bd);margin:0;padding-bottom:env(safe-area-inset-bottom)}}
-@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
-</style>
+<title>Entre Patas – a rede social dos pets e seus tutores</title>
+<meta name="description" content="Entre Patas: compartilhe fotos do seu pet, faça amigos, converse e encontre um lar para quem precisa.">
+<meta name="theme-color" content="#B93E15">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🐾%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <a class="skip" href="#v">Pular para o conteúdo</a>
+
+<div class="a11y" role="toolbar" aria-label="Ferramentas de acessibilidade">
+  <button type="button" data-a="th" aria-pressed="false">🌙 Modo escuro</button>
+  <span role="group" aria-label="Tamanho da fonte">
+    <button type="button" data-a="fs" data-d="-1" aria-label="Diminuir fonte">A-</button>
+    <button type="button" data-a="fs" data-d="0" aria-label="Restaurar tamanho da fonte">A</button>
+    <button type="button" data-a="fs" data-d="1" aria-label="Aumentar fonte">A+</button>
+  </span>
+  <button type="button" data-a="hc" aria-pressed="false">◐ Alto contraste</button>
+</div>
+
 <header id="top"></header>
-<main id="v" tabindex="-1"></main>
+<main id="v" tabindex="-1"><noscript><p class="card pad">Ative o JavaScript para usar o Entre Patas.</p></noscript></main>
+<footer id="foot" class="foot"></footer>
 <dialog id="dlg" aria-label="Janela"></dialog>
 <div id="toast" role="status" aria-live="polite"></div>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <script src="config.js"></script>
 <script src="api.js"></script>
-<script>
-'use strict';
-const $=s=>document.querySelector(s),R=document.documentElement;
-const E=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-let U=null,N={},P={},poll;
-const S=k=>{try{return localStorage.getItem(k)}catch{}},W=(k,v)=>{try{localStorage.setItem(k,v)}catch{}};
-function pref(){R.dataset.t=S('ep_t')||(matchMedia('(prefers-color-scheme:dark)').matches?'d':'l');R.style.fontSize=(S('ep_fs')||100)+'%'}
-const toast=m=>{const t=$('#toast');t.textContent=m;t.className='show';clearTimeout(toast.t);toast.t=setTimeout(()=>t.className='',3500)};
-const ago=t=>{const s=(Date.now()/1e3-t)|0;return s<60?'agora':s<3600?(s/60|0)+' min':s<86400?(s/3600|0)+' h':(s/86400|0)+' d'};
-const av=(u,c='')=>u.avatar?`<img class="av ${c}" src="${E(u.avatar)}" alt="">`:`<span class="av ${c}" aria-hidden="true">${E(u.username[0].toUpperCase())}</span>`;
-function shrink(file,max=1080){return new Promise((ok,no)=>{const i=new Image();i.onload=()=>{const s=Math.min(1,max/Math.max(i.width,i.height)),c=document.createElement('canvas');c.width=i.width*s;c.height=i.height*s;c.getContext('2d').drawImage(i,0,0,c.width,c.height);c.toBlob(b=>b?ok(b):no(Error('Falha ao processar a foto')),'image/jpeg',.85)};i.onerror=()=>no(Error('Arquivo de imagem inválido'));i.src=URL.createObjectURL(file)})}
-const up=async(f,max)=>(await api('/upload',{m:'POST',raw:await shrink(f,max),type:'image/jpeg'})).url;
-
-function head(){
-  $('#top').innerHTML=`<a class="logo" href="#/feed">🐾 Entre Patas</a>`+(U?`<nav aria-label="Principal">
-<a href="#/feed" aria-label="Início">🏠</a><a href="#/adoptions" aria-label="Adoção responsável">🐕</a><a href="#/new" aria-label="Nova publicação">➕</a>
-<a href="#/chat" aria-label="Mensagens${N.msgs?`, ${N.msgs} novas`:''}">💬${N.msgs?`<i>${N.msgs}</i>`:''}</a>
-<a href="#/notifs" aria-label="Notificações${N.notifs?`, ${N.notifs} novas`:''}">🔔${N.notifs?`<i>${N.notifs}</i>`:''}</a>
-<a href="#/friends" aria-label="Amigos">👥</a>${U.role=='admin'?'<a href="#/admin" aria-label="Painel administrativo">🛡️</a>':''}
-<a href="#/me" aria-label="Meu perfil">${av(U)}</a></nav>`:'')+
-  `<span class="tools"><button data-a="fs" data-d="-1" aria-label="Diminuir fonte">A-</button><button data-a="fs" data-d="1" aria-label="Aumentar fonte">A+</button><button data-a="th" aria-label="Alternar tema claro e escuro">◐</button>${U?'<button data-a="out">Sair</button>':''}</span>`}
-
-async function go(){
-  clearInterval(poll);const [,r='feed',a]=location.hash.slice(1).split('/');if(!CFG.url||/SEU-PROJETO/.test(CFG.url))return $('#v').innerHTML='<p class="card pad">Falta configurar o <b>config.js</b> com a URL e a chave pública do Supabase (veja o README).</p>';
-  try{N=await api('/me');U=N.user}catch{U=null}
-  head();if(!U)return auth();
-  try{await(V[r]||V.feed)(a)}catch(e){$('#v').innerHTML=`<p class="err pad" role="alert">${E(e.message)}</p>`}
-  if(!go.f){go.f=1}else $('#v').focus({preventScroll:true})}
-addEventListener('hashchange',go);
-
-function auth(){
-  const reg=location.hash=='#/register';
-  $('#v').innerHTML=`<form class="card auth" data-f="${reg?'reg':'login'}"><h1 class="logo">🐾 Entre Patas</h1><p class="mu">${reg?'Crie o perfil e entre na matilha.':'Entre para ver os pets dos seus amigos.'}</p>
-${reg?'<label>Usuário<input name="username" autocomplete="username" required minlength="3" maxlength="20"></label><label>E-mail<input name="email" type="email" autocomplete="email" required></label>':'<label>E-mail<input name="login" type="email" autocomplete="email" required></label>'}
-<label>Senha${reg?' (8+ caracteres e 1 número)':''}<input name="password" type="password" autocomplete="${reg?'new-password':'current-password'}" required minlength="${reg?8:1}"></label>
-<p class="err" role="alert"></p><button class="btn">${reg?'Criar conta':'Entrar'}</button>
-<p>${reg?'Já tem conta? <a href="#/login">Entrar</a>':'Novo por aqui? <a href="#/register">Criar conta</a>'}</p></form>`}
-
-const card=p=>{P[p.id]=p;const own=U.id==p.uid||U.role=='admin';return`<article class="card post" id="p${p.id}">
-<header class="ph"><a class="who" href="#/u/${E(p.username)}">${av(p)}<b>${E(p.username)}</b></a>${p.adoption?`<span class="badge">${p.status=='adopted'?'Adotado 🏡':'Para adoção'}</span>`:''}${own?`<button class="x" data-a="del" data-id="${p.id}" aria-label="Excluir publicação">🗑</button>`:''}</header>
-<img class="pic" src="${E(p.image)}" alt="Foto de ${E(p.username)}${p.caption?': '+E(p.caption.slice(0,80)):''}" loading="lazy">
-<div class="pb"><div class="acts"><button data-a="like" data-id="${p.id}" aria-pressed="${!!p.liked}" aria-label="Curtir">${p.liked?'♥':'♡'}</button><button data-a="cmt" data-id="${p.id}" aria-label="Comentários">💬</button>${p.adoption&&p.status=='open'&&p.uid!=U.id?`<button class="btn sm" data-a="adopt" data-id="${p.id}">Quero adotar</button>`:''}</div>
-<p><b class="lk">${p.likes}</b> curtidas</p>${p.adoption?`<p class="mu">${E(p.species)} · ${E(p.age)} · ${E(p.city)}</p>`:''}
-<p><b>${E(p.username)}</b> ${E(p.caption)}</p><p class="mu"><small>${ago(p.created)}</small></p><div class="cm" hidden></div></div></article>`};
-
-async function cms(id,c){
-  const {comments}=await api(`/posts/${id}/comments`);
-  c.innerHTML=comments.map(x=>`<p><b>${E(x.username)}</b> ${E(x.body)}</p>`).join('')+`<form data-f="cm" data-id="${id}"><label class="sr" for="c${id}">Comentário</label><input id="c${id}" name="body" maxlength="300" placeholder="Adicionar comentário…" required><button class="btn sm">Publicar</button></form>`;
-  c.querySelector('input').focus()}
-
-const ul=(a,act,lb,act2,lb2)=>a.map(u=>`<li class="row">${av(u)}<a href="#/u/${E(u.username)}">${E(u.username)}</a>${act?`<button class="btn sm" data-a="${act}" data-u="${E(u.username)}">${lb}</button>`:''}${act2?`<button class="btn sm ghost" data-a="${act2}" data-u="${E(u.username)}">${lb2}</button>`:''}</li>`).join('')||'<li class="mu">Ninguém por aqui.</li>';
-
-const V={
-  async feed(t='all'){
-    const [{posts},fr]=await Promise.all([api('/feed?tab='+t),api('/friends')]);
-    const tabs=[['all','Para você'],['friends','Amigos'],['adoption','Adoção']];
-    $('#v').innerHTML=`<div class="stories" aria-label="Amigos e sugestões">${[...fr.friends,...fr.suggest].map(u=>`<a href="#/u/${E(u.username)}"><span class="ring">${av(u)}</span>${E(u.username)}</a>`).join('')}</div>
-<div class="tabs">${tabs.map(([k,l])=>`<a href="#/feed${k=='all'?'':'/'+k}" ${k==t?'aria-current="page"':''}>${l}</a>`).join('')}</div>
-${posts.map(card).join('')||'<p class="card pad">Nada por aqui ainda. <a href="#/new">Publique a primeira foto!</a></p>'}`},
-  new(){
-    $('#v').innerHTML=`<form class="card pad" data-f="post"><h1>Nova publicação</h1><label>Foto<input type="file" name="file" accept="image/*" required></label><img id="pv" class="pic" alt="Pré-visualização da foto" hidden>
-<label>Legenda<textarea name="caption" maxlength="500" rows="3"></textarea></label>
-<label class="ck"><input type="checkbox" name="adoption" id="ad">Este pet está disponível para adoção responsável</label>
-<div id="adf" hidden><label>Espécie e raça<input name="species" maxlength="60"></label><label>Idade<input name="age" maxlength="60" placeholder="Ex.: 2 anos"></label><label>Cidade<input name="city" maxlength="60"></label><p class="mu">Conte na legenda se o pet é vacinado e castrado. Você decide quem pode adotar.</p></div>
-<p class="err" role="alert"></p><button class="btn">Publicar</button></form>`;
-    $('[name=file]').onchange=e=>{const f=e.target.files[0];if(f){$('#pv').src=URL.createObjectURL(f);$('#pv').hidden=false}};
-    $('#ad').onchange=e=>$('#adf').hidden=!e.target.checked},
-  me(){return V.u(U.username)},
-  async u(un){
-    const {user:u,rel,friends,posts}=await api('/users/'+un);posts.forEach(p=>P[p.id]=p);const x=E(u.username);
-    const btn={self:'<button class="btn ghost" data-a="edit">Editar perfil</button>',none:`<button class="btn" data-a="fr" data-u="${x}">Adicionar amigo</button>`,sent:`<button class="btn ghost" data-a="unfr" data-u="${x}">Pedido enviado · cancelar</button>`,received:`<button class="btn" data-a="fr" data-u="${x}">Aceitar pedido</button>`,friends:`<button class="btn ghost" data-a="unfr" data-u="${x}">Amigos ✓ · desfazer</button>`}[rel];
-    $('#v').innerHTML=`<section class="card pad prof">${av(u,'big')}<div><h1>${x}</h1><p><b>${posts.length}</b> publicações · <b>${friends}</b> amigos</p><p>${E(u.bio)}</p><p class="row">${btn}${rel!='self'?`<a class="btn ghost" href="#/chat/${x}">Mensagem</a>`:''}</p></div></section><div id="ed"></div>
-<div class="grid">${posts.map(p=>`<button data-a="open" data-id="${p.id}"><img src="${E(p.image)}" alt="${E((p.caption||'').slice(0,60)||'Publicação de '+u.username)}"></button>`).join('')||'<p class="mu pad">Nenhuma publicação ainda.</p>'}</div>`},
-  async friends(){
-    const r=await api('/friends');
-    $('#v').innerHTML=`<h1 class="pad">Amigos</h1><form data-f="search" class="row pad" role="search"><label class="sr" for="q">Buscar tutores</label><input id="q" name="q" placeholder="Buscar tutores…" style="flex:1"><button class="btn">Buscar</button></form>
-${r.requests.length?`<h2 class="pad">Pedidos recebidos</h2><ul class="card list">${ul(r.requests,'fr','Aceitar','unfr','Recusar')}</ul>`:''}
-<h2 class="pad">Seus amigos</h2><ul class="card list">${ul(r.friends,'chat','Mensagem')}</ul><h2 class="pad">Sugestões</h2><ul class="card list" id="sg">${ul(r.suggest,'fr','Adicionar')}</ul>`},
-  async notifs(){
-    const {items}=await api('/notifications');
-    $('#v').innerHTML=`<h1 class="pad">Notificações</h1><ul class="card list">${items.map(n=>`<li class="${n.seen?'':'new'}"><a class="row" href="${E(n.link)}">${av(n)}<span><b>${E(n.username)}</b> ${E(n.text)} <small class="mu">${ago(n.created)}</small></span></a></li>`).join('')||'<li class="mu">Sem notificações por enquanto.</li>'}</ul>`;
-    N.notifs=0;head()},
-  async chat(u){
-    if(u)return thread(u);
-    const {items}=await api('/conversations');
-    $('#v').innerHTML=`<h1 class="pad">Mensagens</h1><ul class="card list">${items.map(c=>`<li><a class="row" href="#/chat/${E(c.username)}">${av(c)}<span><b>${E(c.username)}</b>${c.unread?` <i>${c.unread}</i>`:''}<br><small class="mu">${E(c.body.slice(0,50))}</small></span></a></li>`).join('')||'<li class="mu">Nenhuma conversa ainda. Abra o perfil de um amigo e toque em “Mensagem”.</li>'}</ul>`},
-  async adoptions(){
-    const {inbox,mine}=await api('/adoptions'),L={pending:'Em análise',approved:'Aprovada 🎉',rejected:'Recusada'};
-    $('#v').innerHTML=`<h1 class="pad">Adoção responsável</h1><p class="pad mu">Leia as respostas, converse com o candidato e só aprove depois de conhecer o lar. Pets adotados saem da lista de disponíveis.</p>
-<h2 class="pad">Candidaturas recebidas</h2><ul class="card list">${inbox.map(a=>{const r=JSON.parse(a.answers);return`<li><div class="row"><img class="th" src="${E(a.image)}" alt=""><span><b>${E(a.username)}</b> quer adotar ${E(a.species)}</span><span class="badge">${L[a.status]}</span></div>
-<dl><dt>Moradia</dt><dd>${E(r.home)}</dd><dt>Outros pets</dt><dd>${E(r.pets)}</dd><dt>Experiência</dt><dd>${E(r.experience)}</dd><dt>Motivo</dt><dd>${E(r.why)}</dd></dl>
-<div class="row"><a class="btn ghost sm" href="#/chat/${E(a.username)}">Conversar</a>${a.status=='pending'?`<button class="btn sm" data-a="dec" data-id="${a.id}" data-v="approve">Aprovar</button><button class="btn ghost sm" data-a="dec" data-id="${a.id}" data-v="reject">Recusar</button>`:''}</div></li>`}).join('')||'<li class="mu">Nenhuma candidatura ainda.</li>'}</ul>
-<h2 class="pad">Minhas candidaturas</h2><ul class="card list">${mine.map(a=>`<li class="row"><img class="th" src="${E(a.image)}" alt=""><span>${E(a.species)} de <a href="#/u/${E(a.owner)}">${E(a.owner)}</a></span><span class="badge">${L[a.status]}</span></li>`).join('')||'<li class="mu">Você ainda não se candidatou. Veja a aba Adoção no feed.</li>'}</ul>`},
-  async admin(){
-    const {stats,users,posts}=await api('/admin');
-    $('#v').innerHTML=`<h1 class="pad">Painel administrativo</h1><div class="stats">${Object.entries(stats).map(([k,v])=>`<div class="card pad"><b>${v}</b><br>${E(k)}</div>`).join('')}</div>
-<h2 class="pad">Usuários</h2><div class="card scroll"><table><caption class="sr">Usuários cadastrados</caption><tr><th>Usuário</th><th>E-mail</th><th>Perfil</th><th>Ações</th></tr>${users.map(u=>`<tr><td><a href="#/u/${E(u.username)}">${E(u.username)}</a></td><td>${E(u.email)}</td><td>${u.role}${u.banned?' · suspenso':''}</td><td>${u.id==U.id?'—':`<button class="btn sm ghost" data-a="adm" data-id="${u.id}" data-v="${u.banned?'unban':'ban'}">${u.banned?'Reativar':'Suspender'}</button>${u.role!='admin'?` <button class="btn sm ghost" data-a="adm" data-id="${u.id}" data-v="promote">Tornar admin</button>`:''}`}</td></tr>`).join('')}</table></div>
-<h2 class="pad">Publicações recentes</h2>${posts.map(card).join('')}`}
-};
-
-async function thread(u){
-  $('#v').innerHTML=`<section class="card chat"><h1 class="pad"><a href="#/chat" aria-label="Voltar">‹</a> <a href="#/u/${E(u)}">${E(u)}</a></h1><div class="msgs" role="log" aria-live="polite" tabindex="0"></div>
-<form data-f="msg" data-u="${E(u)}" class="row"><label class="sr" for="mb">Mensagem</label><input id="mb" name="body" maxlength="1000" autocomplete="off" placeholder="Escreva uma mensagem…" required><button class="btn sm">Enviar</button></form></section>`;
-  const load=thread.load=async()=>{const {items}=await api('/messages/'+u),b=$('.msgs');if(!b||b.childElementCount==items.length)return;b.innerHTML=items.map(m=>`<p class="m ${m.mine?'me':''}">${E(m.body)}</p>`).join('');b.scrollTop=b.scrollHeight};
-  await load();poll=setInterval(()=>load().catch(()=>{}),4000)}
-
-const F={
-  login:async(f,d)=>{await api('/login',{m:'POST',b:d});history.replaceState(null,'','#/feed');go()},
-  reg:async(f,d)=>{const r=await api('/register',{m:'POST',b:d});if(!r.session){toast('Conta criada! Confirme o link enviado ao seu e-mail e depois entre.');history.replaceState(null,'','#/login');return go()}history.replaceState(null,'','#/feed');go()},
-  post:async(f,d)=>{const file=f.elements.file.files[0];if(!file)throw Error('Escolha uma foto');
-    await api('/posts',{m:'POST',b:{image:await up(file),caption:d.caption,adoption:!!d.adoption,species:d.species,age:d.age,city:d.city}});toast('Publicado!');location.hash='#/feed'},
-  cm:async(f,d)=>{const c=f.closest('.cm');await api(`/posts/${f.dataset.id}/comments`,{m:'POST',b:d});await cms(f.dataset.id,c)},
-  msg:async(f,d)=>{await api('/messages/'+f.dataset.u,{m:'POST',b:d});f.reset();await thread.load()},
-  search:async(f,d)=>{const r=await api('/friends?q='+encodeURIComponent(d.q||''));$('#sg').innerHTML=ul(r.suggest,'fr','Adicionar')},
-  adopt:async(f,d)=>{d.terms=!!d.terms;await api('/adopt/'+f.dataset.id,{m:'POST',b:d});$('#dlg').close();toast('Candidatura enviada! O tutor foi avisado.')},
-  prof:async(f,d)=>{let a=U.avatar;const x=f.elements.file.files[0];if(x)a=await up(x,400);await api('/me',{m:'PUT',b:{bio:d.bio,avatar:a}});toast('Perfil atualizado.');go()}
-};
-document.addEventListener('submit',async e=>{
-  const f=e.target,k=f.dataset.f;if(!k||!F[k])return;e.preventDefault();
-  const d=Object.fromEntries(new FormData(f)),b=f.querySelector('.btn');b&&(b.disabled=true);
-  try{await F[k](f,d)}catch(x){const er=f.querySelector('.err');er?er.textContent=x.message:toast(x.message)}
-  b&&(b.disabled=false)});
-
-const post_=(p,m)=>api(p,{m:m||'POST'});
-const A={
-  like:async b=>{const r=await post_(`/posts/${b.dataset.id}/like`);b.textContent=r.liked?'♥':'♡';b.setAttribute('aria-pressed',!!r.liked);b.closest('.post').querySelector('.lk').textContent=r.likes},
-  cmt:async b=>{const c=b.closest('.post').querySelector('.cm');c.hidden=!c.hidden;if(!c.hidden)await cms(b.dataset.id,c)},
-  del:async b=>{if(!confirm('Excluir esta publicação?'))return;await post_('/posts/'+b.dataset.id,'DELETE');toast('Publicação excluída.');if($('#dlg').open)$('#dlg').close();go()},
-  open:b=>{const d=$('#dlg');d.innerHTML=`<button class="x" data-a="close" aria-label="Fechar">✕</button>`+card(P[b.dataset.id]);d.showModal()},
-  close:()=>$('#dlg').close(),
-  adopt:b=>{const d=$('#dlg');d.innerHTML=`<form data-f="adopt" data-id="${b.dataset.id}" class="pad"><h2>Candidatura de adoção</h2>
-<label>Como é a sua moradia? (casa, apartamento, telas de proteção…)<textarea name="home" maxlength="300" required></textarea></label>
-<label>Tem outros pets? Quais?<input name="pets" maxlength="300" required></label><label>Experiência com animais<input name="experience" maxlength="300" required></label>
-<label>Por que quer adotar?<textarea name="why" maxlength="300" required></textarea></label>
-<label class="ck"><input type="checkbox" name="terms" required>Me comprometo a cuidar do pet por toda a vida: vacinas, veterinário e castração. Não vou abandonar, vender nem repassar o animal.</label>
-<p class="err" role="alert"></p><div class="row"><button class="btn">Enviar candidatura</button><button type="button" class="btn ghost" data-a="close">Cancelar</button></div></form>`;d.showModal()},
-  fr:async b=>{await post_('/friends/'+b.dataset.u);toast('Pronto!');go()},
-  unfr:async b=>{await post_('/friends/'+b.dataset.u,'DELETE');go()},
-  chat:b=>{location.hash='#/chat/'+b.dataset.u},
-  edit:()=>{$('#ed').innerHTML=`<form class="card pad" data-f="prof"><label>Foto do perfil<input type="file" name="file" accept="image/*"></label><label>Bio<textarea name="bio" maxlength="150" rows="2">${E(U.bio)}</textarea></label><p class="err" role="alert"></p><button class="btn">Salvar</button></form>`},
-  dec:async b=>{if(!confirm(b.dataset.v=='approve'?'Aprovar esta adoção? O pet será marcado como adotado.':'Recusar esta candidatura?'))return;await post_(`/adoptions/${b.dataset.id}/${b.dataset.v}`);go()},
-  adm:async b=>{await post_(`/admin/users/${b.dataset.id}/${b.dataset.v}`);toast('Feito.');go()},
-  th:()=>{W('ep_t',R.dataset.t=='d'?'l':'d');pref()},
-  fs:b=>{W('ep_fs',Math.min(140,Math.max(80,+(S('ep_fs')||100)+10*b.dataset.d)));pref()},
-  out:async()=>{await post_('/logout');history.replaceState(null,'','#/login');go()}
-};
-document.addEventListener('click',async e=>{const b=e.target.closest('[data-a]');if(!b)return;try{await A[b.dataset.a](b)}catch(x){toast(x.message)}});
-$('#dlg').addEventListener('click',e=>{if(e.target.id=='dlg')e.target.close()});
-pref();go();
-</script>
+<script src="app.js"></script>
 </body>
 </html>
